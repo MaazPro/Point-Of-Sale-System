@@ -91,6 +91,11 @@ if(isset($_GET['subtract'])){
     // echo $counter;
       header("location: index.php");
   }
+
+  if(isset($_POST['checkout'])){
+    console.log("checkout");
+  }
+
   if(isset($_POST['submit'])){
     //   echo "Submitted";
     header("location: index.php");
