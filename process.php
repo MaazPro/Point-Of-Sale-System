@@ -82,9 +82,7 @@ if(isset($_GET['subtract'])){
     $counter = $row['quantity'];
     $counter--;
     if($counter < 1){
-        // DELETE FROM `order_item` WHERE `id` = 27
     $result = $mysqli->query("DELETE FROM order_item WHERE id = '$id'") or die ($mysqli->error);
-
     }else{
 
         $mysqli->query("UPDATE order_item SET quantity= '$counter' WHERE id = '$id'") or die($mysqli->error());

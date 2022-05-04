@@ -27,6 +27,9 @@
     <?php 
         $mysqli = new $mysqli('localhost','root','','db') or die ($mysqli->error);
         $result = $mysqli->query("SELECT * FROM order_item") or die ($mysqli->error);
+        $subTotal = 0;
+        $total = 0;
+        $tax = 0.06;
         // pre_r($result->fetch_assoc());
         // pre_r($result->fetch_assoc());
     ?>
@@ -40,7 +43,8 @@
             <tr>
               <th>Product</th>
               <th>Price <br>(RM)</th>
-              <th colspan = "2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantity</th>
+              <!-- <th colspan = "2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantity</th> -->
+              <th colspan = "1">Quantity</th>
               <th> Cost<br> (RM)</th>
             </tr>
           </thead>
@@ -52,49 +56,68 @@
               <a href="index.php?subtract=<?php echo $row['id']; ?>" class = "btn btn-secondary">-</a>
 
                 <?php echo $row['quantity']; ?>
-                <!-- <input type="submit" value="+" name = "add"> -->
                <a href="index.php?add=<?php echo $row['id']; ?>" class = "btn btn-dark">+</a>
               
             </td>
-            <td></td>
+            <td> <!-- Cost--> 
+            <?php
+                 $cost = 0;
+                 $cost_per_item =  $row['cost_per_item'];
+                 $quantity = $row['quantity'];
+                //  echo $quantity ;
+                 $cost = $cost_per_item * $quantity;
+                 $subTotal = $cost + $subTotal ;
+                 echo $cost ;
+              ?>
+              
+            </td>
           </tr>
           <?php endwhile; ?>
-          <tr>
-          <!-- <tr></tr> -->
-            <td>Subtotal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>RM</td>
-          </tr>
-          <tr>
-            <td>No. of items</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Tax</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>6%</td>
-          </tr>
-          <tr>
-            <td>Service Charge</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Total</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>RM</td>
-          </tr>
+          </table>
+          <br><br>
+          <p></p>
+          <table class = "table">
+          <thead>
+            <tr>
+            <!-- <tr></tr> -->
+           <th colspan = "3">Subtotal</th>
+              <!-- <td></td>
+              <td></td>
+              <td></td> -->
+              <th>&nbsp;RM<?php echo $subTotal ?></th>
+            </tr>
+            <tr>
+              <th colspan = "3">&nbsp;No. of items
+
+              </th>
+              <th>
+              <?php
+                  $rowcount = mysqli_num_rows( $result );
+                  echo $rowcount;
+                ?>
+              </th>
+            </tr>
+            <tr>
+              <th colspan = "3">&nbsp;&nbsp;Tax</td>
+              <th>6%</th>
+            </tr>
+            <tr>
+              <th colspan = "3">&nbsp;&nbsp;Service Charge</th>
+              <th>-</th>
+            </tr>
+            <tr>
+              <th colspan = "3">&nbsp;&nbsp;Total</th>
+
+              <th>RM
+                <?php
+                    $tax = 0.06;
+                    $total = ($subTotal * $tax);
+                    $total = $subTotal + $total;
+                    echo $total;
+                ?>
+              </th>
+            </tr>
+          </thead>
       </table>
       </div>
 
