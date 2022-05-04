@@ -49,20 +49,9 @@
             <td><?php echo $row['product_name']; ?></td>
             <td><?php echo $row['cost_per_item']; ?></td>
             <td>
-              <a href="" class = "btn btn-secondary">-</a>
+              <a href="index.php?subtract=<?php echo $row['id']; ?>" class = "btn btn-secondary">-</a>
 
-                <?php echo $row['quantity']; 
-                // if(isset($_GET['add'])){
-                  // $counter = $row['quantity'];
-                  // $id = $row["id"];
-                  // echo $id;
-                  // $counter++;
-                  // $mysqli->query("UPDATE order_item SET quantity= '$counter' WHERE id = '$id'") or die($mysqli->error());
-                  // echo $row['quantity'];
-                  // echo $counter;
-                // }
-              
-                ?>
+                <?php echo $row['quantity']; ?>
                 <!-- <input type="submit" value="+" name = "add"> -->
                <a href="index.php?add=<?php echo $row['id']; ?>" class = "btn btn-dark">+</a>
               
