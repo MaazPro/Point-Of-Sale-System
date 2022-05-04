@@ -92,13 +92,11 @@ if(isset($_GET['subtract'])){
       header("location: index.php");
   }
 
-  if(isset($_POST['checkout'])){
-    console.log("checkout");
+  if(isset($_POST['submit'])){
+    console.log("submit");
+    echo "submit";
+    header("location: index.php");
+
   }
 
-  if(isset($_POST['submit'])){
-    //   echo "Submitted";
-    header("location: index.php");
-    
-  }
 ?>

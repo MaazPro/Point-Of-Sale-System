@@ -141,7 +141,13 @@
         <button type="submit" class = "btn btn-danger" name = "cancel">Cancel</button>
         <!-- <button type="submit" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal">Checkout</button> -->
         <button type="button" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal" >Checkout</button>
-
+         <?php 
+              if(isset($_POST['cancel'])){
+                console.log("checkout");
+                // header("location: index.php");
+            
+              } 
+         ?>     
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -158,18 +164,6 @@
                     <tr>
                         <th colspan = "3">Total Paid Amount</th>
                         <th>RM <input type="text" name="totalAmountPaid" id = "amountPaid" onkeyup = "f1()" style = "border: hidden;" placeholder = "Enter Amount" value = "<?php $amount ?>" >
-                       
-                        <!-- <script> 
-                        const amountPaid = document.getElementById("amountPaid");
-                        const totalAmount = document.getElementById("totalAmount");
-                        
-                         function f1(){
-                         var a = 1;
-                         console.log (amountPaid.value);
-                         console.log (totalAmount.value);
-                                       }
-                        </script> -->
-                      
                         </th>
                     </tr>  
                     <tr>
@@ -190,9 +184,6 @@
                     <tr>
                         <th colspan = "3">Change</th>
                         <th>RM <input type="text" name="change" id="customerChange" style = "border: hidden;font-weight:bold;letter-spacing: 0.11em;outline:none;'" readonly>
-                          <?php 
-
-                          ?>
                         </th>
                     </tr>  
                   </thead>
@@ -202,6 +193,9 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary" name = "submit" id = "submitBtn" >Submit</button>
+                  <?php
+                  
+                  ?>
                 </div>
               </div>
             </div>
