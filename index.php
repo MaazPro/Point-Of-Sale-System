@@ -16,7 +16,7 @@
     
 
   </head>
-  <body>
+  <body onload = "f2()">
     <?php require_once 'process.php'; ?>
     <!-- Codes Below -->
     <div class="container">
@@ -113,7 +113,7 @@
                     $tax = 0.06;
                     $total = ($subTotal * $tax);
                     $total = $subTotal + $total;
-                    echo $total;
+                    echo "<span style = 'letter-spacing: 0.12em;'>" . $total . '</span>';
                 ?>
               </th>
             </tr>
@@ -140,7 +140,7 @@
         <center>
         <button type="submit" class = "btn btn-danger" name = "cancel">Cancel</button>
         <!-- <button type="submit" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal">Checkout</button> -->
-        <button type="button" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal">Checkout</button>
+        <button type="button" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal" >Checkout</button>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -157,19 +157,43 @@
                     <thead>
                     <tr>
                         <th colspan = "3">Total Paid Amount</th>
-                        <th></th>
+                        <th>RM <input type="text" name="totalAmountPaid" id = "amountPaid" onkeyup = "f1()" style = "border: hidden;" placeholder = "Enter Amount" value = "<?php $amount ?>" >
+                       
+                        <!-- <script> 
+                        const amountPaid = document.getElementById("amountPaid");
+                        const totalAmount = document.getElementById("totalAmount");
+                        
+                         function f1(){
+                         var a = 1;
+                         console.log (amountPaid.value);
+                         console.log (totalAmount.value);
+                                       }
+                        </script> -->
+                      
+                        </th>
                     </tr>  
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th colspan = "3">Total</th>
+                        <!-- <th>RM <?php //echo "<span style = 'letter-spacing: 0.11em;'>" . $total . "</span>" ?></th> -->
+                        <th>RM <input type="text" name="total" id="totalAmount" value = "<?php echo $total; ?>" style = "border: hidden;font-weight:bold;letter-spacing: 0.11em;outline:none;'" readonly> </th>
                     </tr>  
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th colspan = "3">Payment Method</th>
+                        <th>
+                          <select name="paymentMethod">
+                            <option value="cash">Cash</option>
+                            <option value="debit">Debit</option>
+                            <option value="credit">Credit</option>
+                          </select>
+                        </th>
                     </tr>  
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th colspan = "3">Change</th>
+                        <th>RM <input type="text" name="change" id="customerChange" style = "border: hidden;font-weight:bold;letter-spacing: 0.11em;outline:none;'" readonly>
+                          <?php 
+
+                          ?>
+                        </th>
                     </tr>  
                   </thead>
                 
@@ -177,15 +201,15 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" name = "submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name = "submit" id = "submitBtn" >Submit</button>
                 </div>
               </div>
             </div>
         </div>
-        
         </center>
         </form>  
       </div>
     </div>
+    <script src="node.js"></script>
   </body>
 </html>
