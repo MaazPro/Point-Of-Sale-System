@@ -24,23 +24,14 @@
     <div class="row justify-content-center">
     <h6>Point Of Sale - Cashier</h6>
     </div>
+    <?php 
+        $mysqli = new $mysqli('localhost','root','','db') or die ($mysqli->error);
+        $result = $mysqli->query("SELECT * FROM order_item") or die ($mysqli->error);
+        // pre_r($result->fetch_assoc());
+        // pre_r($result->fetch_assoc());
+    ?>
 
-    <!-- Products Buttons -->
-    <div class="row justify-content-center">
-   
-    <form action="process.php" method = "POST">
-        <br><br>       
-        <button type="submit" class = "btn btn-secondary" name = "p1">Product 1</button>
-        &nbsp; &nbsp; 
-        <button type="submit" class = "btn btn-secondary" name = "p2">Product 2</button>
-        <br><br>
-        <button type="submit" class = "btn btn-secondary" name = "p3">Product 3</button>
-        &nbsp; &nbsp; 
-        <button type="submit" class = "btn btn-secondary" name = "p4">Product 4</button>
-        <br><br>
-    </div>
-
-
+<!-- <form action="process.php" method = "POST"> -->
 
    <!--Display Table -->
     <div class="row justify-content-center">
@@ -53,19 +44,34 @@
               <th> Cost<br> (RM)</th>
             </tr>
           </thead>
-      
+          <?php while ($row = $result-> fetch_assoc()):  ?>
           <tr>
-            <td></td>
-            <td></td>
+            <td><?php echo $row['product_name']; ?></td>
+            <td><?php echo $row['cost_per_item']; ?></td>
             <td>
               <a href="" class = "btn btn-secondary">-</a>
-              <?php ?>counter
-              <a href="" class = "btn btn-dark">+</a>
+
+                <?php echo $row['quantity']; 
+                // if(isset($_GET['add'])){
+                  // $counter = $row['quantity'];
+                  // $id = $row["id"];
+                  // echo $id;
+                  // $counter++;
+                  // $mysqli->query("UPDATE order_item SET quantity= '$counter' WHERE id = '$id'") or die($mysqli->error());
+                  // echo $row['quantity'];
+                  // echo $counter;
+                // }
+              
+                ?>
+                <!-- <input type="submit" value="+" name = "add"> -->
+               <a href="index.php?add=<?php echo $row['id']; ?>" class = "btn btn-dark">+</a>
               
             </td>
+            <td></td>
           </tr>
-          <tr></tr>
+          <?php endwhile; ?>
           <tr>
+          <!-- <tr></tr> -->
             <td>Subtotal</td>
             <td></td>
             <td></td>
@@ -106,9 +112,24 @@
       <!-- Form Buttons-->
       <div class="row justify-content-center">
         <form action="process.php" method = "POST">
+              <!-- Products Buttons -->
+        <div class="row justify-content-center">
+            <br><br>       
+            <button type="submit" class = "btn btn-secondary" name = "p1">Product 1</button>
+            &nbsp; &nbsp; 
+            <button type="submit" class = "btn btn-secondary" name = "p2">Product 2</button>
+            &nbsp; &nbsp;
+            <br>
+            <button type="submit" class = "btn btn-secondary" name = "p3">Product 3</button>
+            &nbsp; &nbsp; 
+            <button type="submit" class = "btn btn-secondary" name = "p4">Product 4</button>
+        </div>
+        <br><br>
+        <center>
         <button type="submit" class = "btn btn-danger" name = "cancel">Cancel</button>
-        &nbsp; &nbsp; 
+        <!-- &nbsp; &nbsp;  -->
         <button type="submit" class = "btn btn-success" name = "checkout">Checkout</button>
+        </center>
         </form>  
       </div>
     </div>
