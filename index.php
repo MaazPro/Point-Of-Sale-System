@@ -18,8 +18,8 @@
   </head>
   <body>
     <?php require_once 'process.php'; ?>
-    <?php session_start();
-    $_SESSION["favcolor"] = "green"; ?>
+    <?php session_start(); ?>
+
     <!-- Codes Below -->
     <div class="container">
    
@@ -35,7 +35,7 @@
         $paymentMethod = '';
         $change = '';
         $serviceCharge = 0;
-
+        $check = '';
        
         // pre_r($result->fetch_assoc());
         // pre_r($result->fetch_assoc());
@@ -117,10 +117,12 @@
 
               <th>RM
                 <?php
-                    $tax = 0.06;
-                    $total = ($subTotal * $tax);
-                    $total = $subTotal + $total;
+                    // $tax = 0.06;
+                    $tax = ($subTotal * 0.06);
+                    $total = $subTotal + $tax;
+                    $_SESSION["total"] = $total;
                     echo "<span style = 'letter-spacing: 0.12em;'>" . $total . '</span>';
+
                 ?>
               </th>
             </tr>
@@ -151,7 +153,12 @@
         <button type="submit" class = "btn btn-danger" name = "cancel">Cancel</button>
         <!-- <button type="submit" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal">Checkout</button> -->
         <button type="button" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal" >Checkout</button>
-   
+          <?php 
+            if(isset($_POST['checkout'])){
+              $check =  "CHECKOUT";
+              
+          }
+          ?>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -202,10 +209,8 @@
                     $_SESSION["rowcount"] =$rowcount;
                     $_SESSION["tax"] =$tax;
                     $_SESSION["serviceCharge"] = $serviceCharge;
-                    $_SESSION["total"] = $total;
+                    // $_SESSION["total"] = $total;
                     $_SESSION["paymentMethod"] = $paymentMethod;
-                    // $paymentMethod
-                    
                    ?>
                 </div>
               </div>
