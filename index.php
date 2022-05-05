@@ -16,7 +16,7 @@
     
 
   </head>
-  <body onload = "f2()">
+  <body>
     <?php require_once 'process.php'; ?>
     <!-- Codes Below -->
     <div class="container">
@@ -30,6 +30,10 @@
         $subTotal = 0;
         $total = 0;
         $tax = 0.06;
+        $paymentMethod = '';
+        $change = '';
+
+       
         // pre_r($result->fetch_assoc());
         // pre_r($result->fetch_assoc());
     ?>
@@ -123,7 +127,7 @@
 
       <!-- Form Buttons-->
       <div class="row justify-content-center">
-        <form action="process.php" method = "POST">
+        <form action="" method = "POST">
               <!-- Products Buttons -->
         <div class="row justify-content-center">
             <br><br>       
@@ -135,20 +139,23 @@
             <button type="submit" class = "btn btn-secondary" name = "p3">Product 3</button>
             &nbsp; &nbsp; 
             <button type="submit" class = "btn btn-secondary" name = "p4">Product 4</button>
+
+            <!-- <button type="submit" class = "btn btn-secondary" name = "p5">Product 5</button>
+            <input type="text" name="tf" value = "<?php //echo $x; ?>" > -->
         </div>
         <br><br>
         <center>
         <button type="submit" class = "btn btn-danger" name = "cancel">Cancel</button>
         <!-- <button type="submit" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal">Checkout</button> -->
         <button type="button" class = "btn btn-success" name = "checkout" data-toggle="modal" data-target="#exampleModal" >Checkout</button>
-
+   
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <h5 class="modal-title" id="exampleModalLabel">Checkout Section</h5>
+                  <button type="submit" class="close" name = "close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -158,18 +165,6 @@
                     <tr>
                         <th colspan = "3">Total Paid Amount</th>
                         <th>RM <input type="text" name="totalAmountPaid" id = "amountPaid" onkeyup = "f1()" style = "border: hidden;" placeholder = "Enter Amount" value = "<?php $amount ?>" >
-                       
-                        <!-- <script> 
-                        const amountPaid = document.getElementById("amountPaid");
-                        const totalAmount = document.getElementById("totalAmount");
-                        
-                         function f1(){
-                         var a = 1;
-                         console.log (amountPaid.value);
-                         console.log (totalAmount.value);
-                                       }
-                        </script> -->
-                      
                         </th>
                     </tr>  
                     <tr>
@@ -190,26 +185,41 @@
                     <tr>
                         <th colspan = "3">Change</th>
                         <th>RM <input type="text" name="change" id="customerChange" style = "border: hidden;font-weight:bold;letter-spacing: 0.11em;outline:none;'" readonly>
-                          <?php 
-
-                          ?>
                         </th>
                     </tr>  
                   </thead>
-                
                   </table>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" name = "submit" id = "submitBtn" >Submit</button>
+                  <button type="submit" class="btn btn-primary" name = "finalSubmit" id = "submitBtn" >Submit</button>
+                  
+                <?php
+                // $amount = 0;
+                //   if(isset($_POST['finalSubmit'])){
+                //     $amount = $_POST['totalAmountPaid'];
+                //     // echo $amount;
+                //   }
+                   ?>
                 </div>
               </div>
             </div>
-        </div>
+         </div>
         </center>
         </form>  
       </div>
     </div>
-    <script src="node.js"></script>
+    <input type="text" value = "<?php 
+                  $amount = 0;
+                  if(isset($_POST['finalSubmit'])){
+                    $amount = $_POST['totalAmountPaid'];
+                    $total = $_POST['total'];
+                    $paymentMethod = $_POST['paymentMethod'];
+                    $change = $_POST['change'];
+                    // change
+                     echo $change;
+                     // assign value for the following 
+                  }?>">
+    <script src= "node2.js"> </script>
   </body>
 </html>

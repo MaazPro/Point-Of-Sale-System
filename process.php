@@ -3,6 +3,8 @@
 $mysqli = new mysqli('localhost','root','','db') or die (mysqli_error($mysqli)); 
 $quantity = 0;
 $itemCost = 0;
+$x = "";
+$finalSubmit = 0;
 
 if(isset($_POST['p1'])){
     // echo "p1: ";
@@ -92,13 +94,10 @@ if(isset($_GET['subtract'])){
       header("location: index.php");
   }
 
-  if(isset($_POST['checkout'])){
-    console.log("checkout");
+
+if(isset($_POST['close'])){
+    echo 'Close';
+    // header("location: index.php");
   }
 
-  if(isset($_POST['submit'])){
-    //   echo "Submitted";
-    header("location: index.php");
-    
-  }
 ?>
