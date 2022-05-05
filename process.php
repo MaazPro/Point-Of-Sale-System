@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $mysqli = new mysqli('localhost','root','','db') or die (mysqli_error($mysqli)); 
 $quantity = 0;
 $itemCost = 0;
@@ -95,9 +95,18 @@ if(isset($_GET['subtract'])){
   }
 
 
-if(isset($_POST['close'])){
-    echo 'Close';
-    // header("location: index.php");
+  if(isset($_POST['finalSubmit'])){
+    
+    $order_id ;
+    
+    echo $subTotal = $_SESSION["subTotal"] . '<br>';
+    echo $rowcount = $_SESSION["rowcount"] . '<br>';
+    echo $tax = $_SESSION["tax"] . '<br>';
+    echo $serviceCharge = $_SESSION["serviceCharge"] . '<br>';
+    echo $total = $_SESSION["total"] . '<br>';
+    echo $paymentMethod = $_SESSION["paymentMethod"];
+    //  header("location: index.php");
   }
-
+  
+  session_destroy();
 ?>
