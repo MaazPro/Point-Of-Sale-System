@@ -18,6 +18,8 @@
   </head>
   <body>
     <?php require_once 'process.php'; ?>
+    <?php session_start();
+    $_SESSION["favcolor"] = "green"; ?>
     <!-- Codes Below -->
     <div class="container">
    
@@ -32,6 +34,7 @@
         $tax = 0.06;
         $paymentMethod = '';
         $change = '';
+        $serviceCharge = 0;
 
        
         // pre_r($result->fetch_assoc());
@@ -107,7 +110,7 @@
             </tr>
             <tr>
               <th colspan = "3">&nbsp;&nbsp;Service Charge</th>
-              <th>-</th>
+              <th><?php echo $serviceCharge?></th>
             </tr>
             <tr>
               <th colspan = "3">&nbsp;&nbsp;Total</th>
@@ -127,7 +130,7 @@
 
       <!-- Form Buttons-->
       <div class="row justify-content-center">
-        <form action="" method = "POST">
+        <form action="process.php" method = "POST">
               <!-- Products Buttons -->
         <div class="row justify-content-center">
             <br><br>       
@@ -176,9 +179,9 @@
                         <th colspan = "3">Payment Method</th>
                         <th>
                           <select name="paymentMethod">
-                            <option value="cash">Cash</option>
-                            <option value="debit">Debit</option>
-                            <option value="credit">Credit</option>
+                            <option value="<?php $paymentMethod = 'cash'; echo $paymentMethod ?>">Cash</option>
+                            <option value="<?php  $paymentMethod = 'debit'; echo $paymentMethod?>" >Debit</option>
+                            <option value="<?php $paymentMethod = 'credit'; echo $paymentMethod ?>" >Credit</option>
                           </select>
                         </th>
                     </tr>  
@@ -195,11 +198,14 @@
                   <button type="submit" class="btn btn-primary" name = "finalSubmit" id = "submitBtn" >Submit</button>
                   
                 <?php
-                // $amount = 0;
-                //   if(isset($_POST['finalSubmit'])){
-                //     $amount = $_POST['totalAmountPaid'];
-                //     // echo $amount;
-                //   }
+                    $_SESSION["subTotal"] = $subTotal;
+                    $_SESSION["rowcount"] =$rowcount;
+                    $_SESSION["tax"] =$tax;
+                    $_SESSION["serviceCharge"] = $serviceCharge;
+                    $_SESSION["total"] = $total;
+                    $_SESSION["paymentMethod"] = $paymentMethod;
+                    // $paymentMethod
+                    
                    ?>
                 </div>
               </div>
@@ -209,17 +215,6 @@
         </form>  
       </div>
     </div>
-    <input type="text" value = "<?php 
-                  $amount = 0;
-                  if(isset($_POST['finalSubmit'])){
-                    $amount = $_POST['totalAmountPaid'];
-                    $total = $_POST['total'];
-                    $paymentMethod = $_POST['paymentMethod'];
-                    $change = $_POST['change'];
-                    // change
-                     echo $change;
-                     // assign value for the following 
-                  }?>">
     <script src= "node2.js"> </script>
   </body>
 </html>
