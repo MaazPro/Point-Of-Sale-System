@@ -185,20 +185,12 @@ if(isset($_POST['p2'])){
     $mysqli->query("INSERT INTO orders (`reference_no`, `tax`, `service_charge`, `total_amount_cents`, `is_walking`, `status`) VALUES ('$reference_no','$tax_','$serviceCharge_', '$total_','$is_walking_','$status_')") or
     die($mysqli->error);
 
-    // $result = $mysqli->query("SELECT `id` FROM `orders` ORDER BY `id` ASC") or die ($mysqli->error);
-    // $row = $result-> fetch_assoc();
-    // while ($row = $result-> fetch_assoc()){
-    //     $getId = $row['id'];
-    // }
-    // echo "ID:" . $getId;
-
     header("location: index.php");
     
 }
 
 if(isset($_POST['p3'])){
-    // echo "p1: ";
-    //unique order id
+
     $order_id = rand(10,100) + rand(1,10);
     $cost_per_item = 8;
     $product_name = "P3";
@@ -225,18 +217,11 @@ if(isset($_POST['p3'])){
     $mysqli->query("INSERT INTO orders (`reference_no`, `tax`, `service_charge`, `total_amount_cents`, `is_walking`, `status`) VALUES ('$reference_no','$tax_','$serviceCharge_', '$total_','$is_walking_','$status_')") or
     die($mysqli->error);
 
-    // $result = $mysqli->query("SELECT `id` FROM `orders` ORDER BY `id` ASC") or die ($mysqli->error);
-    // $row = $result-> fetch_assoc();
-    // while ($row = $result-> fetch_assoc()){
-    //     $getId = $row['id'];
-    // }
-    // echo "ID:" . $getId;
-
     header("location: index.php");
 }
 
 if(isset($_POST['p4'])){
-    // echo "p1: ";
+   
     //unique order id
     $order_id = rand(10,100) + rand(1,10);
     $cost_per_item = 16;
@@ -264,19 +249,8 @@ if(isset($_POST['p4'])){
     $mysqli->query("INSERT INTO orders (`reference_no`, `tax`, `service_charge`, `total_amount_cents`, `is_walking`, `status`) VALUES ('$reference_no','$tax_','$serviceCharge_', '$total_','$is_walking_','$status_')") or
     die($mysqli->error);
 
-    // $result = $mysqli->query("SELECT `id` FROM `orders` ORDER BY `id` ASC") or die ($mysqli->error);
-    // $row = $result-> fetch_assoc();
-    // while ($row = $result-> fetch_assoc()){
-    //     $getId = $row['id'];
-    // }
-    // echo "ID:" . $getId;
-
     header("location: index.php");
 }
 
-//   if(isset($_POST['checkout'])){
-//     $x =  "CHECKOUT";
-    
-// }
   session_destroy();
 ?>
