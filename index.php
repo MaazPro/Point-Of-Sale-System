@@ -36,9 +36,7 @@
         $change = '';
         $serviceCharge = 0;
         $check = '';
-       
-        // pre_r($result->fetch_assoc());
-        // pre_r($result->fetch_assoc());
+ 
     ?>
 
 <!-- <form action="process.php" method = "POST"> -->

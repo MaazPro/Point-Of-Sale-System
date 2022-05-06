@@ -31,7 +31,6 @@ function changeColor(){
 
 }
 
-
  function f2(){
     submitBtn.disabled = true;
 }                 
